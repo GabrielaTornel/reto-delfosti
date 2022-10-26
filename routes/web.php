@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TodosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/content', function () {
+Route::get('/', function () {
     return view("content.index");
 });
+
+Route::resource('/todo',TodosController::class);
 
