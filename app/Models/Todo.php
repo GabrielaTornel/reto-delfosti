@@ -7,10 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-    protected $table = 'todo';
-    protected  $primaryKey= 'id';
-    protected   $fillable =[
-        '_id', 'name', 'slug'  
-    ];
-    // use HasFactory;
+    use HasFactory;
 }
