@@ -20,13 +20,9 @@ class TodoController extends Controller
       // $todos=Todo::all();
 
        //----CON PAGINACION------------//
-       $todos=Todo::paginate(5);
-
-
-    //    ->select('id', 'name', 'slug')
-    //    ->where('name', 'LIKE' ,'%' . $texto . '%');
-    // ->orderBy('name', 'asc')
-    // ->paginate(4);
+       $todos=Todo::where('name', 'LIKE' ,'%' . $texto . '%')
+       ->orWhere('slug', 'LIKE' ,'%' . $texto . '%')
+       ->paginate(5);
     
        return  view('todo.index', compact('todos', 'texto'));
     }
@@ -100,6 +96,8 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo= Todo::findOrFail($id);
+        $todo-> delete();
+        return redirect()->route('todo.index');
     }
 }

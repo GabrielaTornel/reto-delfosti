@@ -16,10 +16,8 @@
         <form action="{{route('todo.index')}}" method="get" value="{{$texto}}">
           <div class="form-row">
             <div class="col-sm-4 my-2">
-              <input type="text" class="form-control" name="texto" >
-            </div>
-            <div>
-              <input type="submit" class="btn btn-primary" value= "Buscar">
+              <input type="text" class="form-control my-2 placeholder="buscar tarea" name="texto" >
+              <input type="submit" class="btn btn-primary" value="Buscar">
             </div>
             <div class="col-auto  my-2">
               <a href="{{route('todo.create')}}" class="btn btn-success"> Nueva tarea</a>
@@ -51,7 +49,13 @@
             <td>{{$todo->id}}</td>
             <td>{{$todo->name}}</td>
             <td>{{$todo->slug}}</td>
-            <td>Listo | eliminar</td>
+            <td>
+              <form action="{{route('todo.destroy', $todo->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" class="btn btn-danger btn-sm" value="Eliminar" />
+              </form>
+            </td>
             </tr>
             @endforeach
             @endif
